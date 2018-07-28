@@ -25,7 +25,7 @@ function login_user($conn,$username,$password){
 }
 
 function check_if_user_exists($conn,$data){
-	$sql = "SELECT 'user_name' from users where 'user_name'='$data'";
+	$sql = "SELECT user_name from users where user_name='$data'";
 	$result = mysqli_query($conn,$sql);
 	$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 	$active = $row['active'];
@@ -37,7 +37,7 @@ function check_if_user_exists($conn,$data){
 }
 
 function check_if_email_exists($conn,$data){
-	$sql = "SELECT 'user_email' from users where 'user_email'='$data'";
+	$sql = "SELECT user_email from users where user_email='$data'";
 	$result = mysqli_query($conn,$sql);
 	$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 	$active = $row['active'];

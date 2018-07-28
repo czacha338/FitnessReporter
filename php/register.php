@@ -1,7 +1,7 @@
 <?php
 	include("logger.php");
 	include("config.php");
-	include('general_functions.php');
+	include("general_functions.php");
 	
 	session_start();
 	$conn = create_connection();
@@ -21,19 +21,19 @@
 				close_connection($conn);
 			} 
 			else{
-				$result = check_if_user_exists($myusername);
+				$result = check_if_user_exists($conn,$myusername);
 				if($result == TRUE) {
 					web_alert("User already exists in database");
 					close_connection($conn);
 				}
 				else{
-					$result = check_if_email_exists($myusername);
+					$result = check_if_email_exists($conn,$myemail);
 					if($result == TRUE) {
 						web_alert("Email already exists in database");
 						close_connection($conn);
 					}
 					else{
-						$sql = "INSERT INTO users ('user_name', 'user_email', 'user_password') VALUES ('$myusername','$myemail','$mypassword')";
+						$sql = "INSERT INTO users (user_name, user_email, user_password) VALUES ('$myusername','$myemail','$mypassword')";
 						if ($conn->query($sql) === TRUE) {
 							web_alert("User created succesfully, try to log in");
 							close_connection($conn);

@@ -1,7 +1,7 @@
 <?php
    include("logger.php");
    include("config.php");
-   include('general_functions.php');
+   include("general_functions.php");
    
    session_start();
    $conn = create_connection();
@@ -14,7 +14,7 @@
 			$myusername = mysqli_real_escape_string($conn,$_POST['username']);
 			$mypassword = mysqli_real_escape_string($conn,$_POST['password']);
 	
-			$result = $login_user($conn,$myusername,$mypassword);
+			$result = login_user($conn,$myusername,$mypassword);
 
 			if($result == TRUE) {
 				session_register("myusername");
