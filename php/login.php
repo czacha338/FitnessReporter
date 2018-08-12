@@ -3,7 +3,6 @@
    include("config.php");
    include("general_functions.php");
    
-   session_start();
    $conn = create_connection();
     if ($conn == FALSE){
 	   web_alert("Connect to database failed");
@@ -17,10 +16,9 @@
 			$result = login_user($conn,$myusername,$mypassword);
 
 			if($result == TRUE) {
-				session_register("myusername");
 				$_SESSION['login_user'] = $myusername;
 				close_connection($conn);
-				header("location: welcome.php");
+				header("location:../sites/page-main.html");
 			}
 			else{
 				web_alert("password or username is wrong");
