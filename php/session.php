@@ -10,7 +10,6 @@
    }
    
    else{
-	   console_log($_SESSION['login_user']);
 	   $user_check = $_SESSION['login_user'];
 	   $ses_sql = mysqli_query($conn,"select user_name from users where user_name = '$user_check' ");
 	   $row = mysqli_fetch_array($ses_sql,MYSQLI_ASSOC);
