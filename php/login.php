@@ -3,6 +3,7 @@
    include("config.php");
    include("general_functions.php");
    
+   session_start();
    $conn = create_connection();
     if ($conn == FALSE){
 	   web_alert("Connect to database failed");
@@ -16,9 +17,17 @@
 			$result = login_user($conn,$myusername,$mypassword);
 
 			if($result == TRUE) {
-				$_SESSION['login_user'] = $myusername;
-				close_connection($conn);
-				header("location:../sites/page-main.html");
+				$id = get_id($conn,$myusername);
+				if ($id != FALSE){
+					$_SESSION['login_user'] = $id;
+					close_connection($conn);
+					header("location:../sites/page-main.html");
+					exit();
+				}
+				else{	
+					web_alert("Cannot log session");
+					close_connection($conn);
+				}
 			}
 			else{
 				web_alert("password or username is wrong");

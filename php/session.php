@@ -17,10 +17,12 @@
 	   if(!isset($_SESSION['login_user'])){
 			header("location:sites/page-login.html");
 			close_connection($conn);
+			exit();
 		}
 		else{
 			header("location:sites/page-main.html");
 			close_connection($conn);
+			exit();
 		}
    }
    

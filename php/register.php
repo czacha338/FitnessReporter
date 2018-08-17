@@ -38,6 +38,7 @@
 							web_alert("User created succesfully, try to log in");
 							close_connection($conn);
 							header("location:../sites/page-login.html");
+							exit();
 						} 
 						else {
 							web_alert("Error: User has not been created");
