@@ -6,6 +6,7 @@
    session_destroy();
    
    header("location:../sites/page-login.html");
+   exit();
 	
 	
 ?>

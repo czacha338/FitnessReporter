@@ -5,17 +5,17 @@ include('general_functions.php');
 
 session_start();
 
-function init($data,$default_val){	
+function init($data){
+	$default_val = "N/A";
 	$conn = create_connection();
 	if ($conn == FALSE){
 	   die("Connection failed: " . $conn->connect_error);
 	}
-	$sql="select ".$data." from users where user_id = ".$_SESSION['login_user']."";
+	$sql="select ".$data." from params where params_userid = ".$_SESSION['login_user']." order by params_submission_date desc limit 1";
 	$result = mysqli_query($conn,$sql);
 	$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 	$active = $row['active'];
 	$count = mysqli_num_rows($result);
-
 	if($count == 1){
 		$res = $row[$data];
 		if($res == NULL) $res = $default_val;
@@ -28,5 +28,5 @@ function init($data,$default_val){
 	
 }
 
-echo init($_POST['id'],$_POST['dev']);
+echo init($_POST['id']);
 ?>
